@@ -20,8 +20,7 @@ RUN set -ex \
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
     done
 
-ENV NODE_VERSION 0.10.45
-ENV NPM_VERSION 2.14.1
+ENV NODE_VERSION 4.5.0
 
 RUN set -x \
  && apt-get update && apt-get install -y curl ca-certificates imagemagick --no-install-recommends \
@@ -32,7 +31,6 @@ RUN set -x \
  && grep " node-v$NODE_VERSION-linux-x64.tar.gz\$" SHASUMS256.txt.asc | sha256sum -c - \
  && tar -xzf "node-v$NODE_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1 \
  && rm "node-v$NODE_VERSION-linux-x64.tar.gz" SHASUMS256.txt.asc \
- && npm install -g npm@"$NPM_VERSION" \
  && npm cache clear \
  && groupadd -r rocketchat \
  && useradd -r -g rocketchat rocketchat
