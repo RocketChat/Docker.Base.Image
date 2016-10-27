@@ -21,6 +21,7 @@ RUN set -ex \
     done
 
 ENV NODE_VERSION 0.10.45
+ENV NODE_ENV production
 
 RUN set -x \
  && apt-get update && apt-get install -y curl ca-certificates imagemagick --no-install-recommends \
