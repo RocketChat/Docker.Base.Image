@@ -24,7 +24,7 @@ ENV NODE_VERSION 4.8.1
 ENV NODE_ENV production
 
 RUN set -x \
- && apt-get update && apt-get install -y curl ca-certificates imagemagick --no-install-recommends \
+ && apt-get update && apt-get install -y curl ca-certificates --no-install-recommends \
  && rm -rf /var/lib/apt/lists/* \
  && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" \
  && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
