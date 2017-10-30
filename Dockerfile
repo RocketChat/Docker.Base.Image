@@ -20,7 +20,7 @@ RUN set -ex \
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
     done
 
-ENV NODE_VERSION 4.8.4
+ENV NODE_VERSION 8.8.1
 ENV NODE_ENV production
 
 RUN set -x \
@@ -32,6 +32,6 @@ RUN set -x \
  && grep " node-v$NODE_VERSION-linux-x64.tar.gz\$" SHASUMS256.txt.asc | sha256sum -c - \
  && tar -xzf "node-v$NODE_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1 \
  && rm "node-v$NODE_VERSION-linux-x64.tar.gz" SHASUMS256.txt.asc \
- && npm cache clear \
+ && npm cache clear --force \
  && groupadd -g 99999 -r rocketchat \
  && useradd -u 99999 -r -g rocketchat rocketchat
