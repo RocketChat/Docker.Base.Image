@@ -3,7 +3,7 @@ FROM debian:jessie
 MAINTAINER buildmaster@rocket.chat
 
 # gpg: key 4FD08014: public key "Rocket.Chat Buildmaster <buildmaster@rocket.chat>" imported
-RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 0E163286C20D07B9787EBE9FD7F9D0414FD08104
+RUN gpg --keyserver pool.sks-keyservers.net --recv-keys 0E163286C20D07B9787EBE9FD7F9D0414FD08104
 
 # gpg keys listed at https://github.com/nodejs/node
 RUN set -ex \
@@ -18,7 +18,7 @@ RUN set -ex \
       77984A986EBC2AA786BC0F66B01FBB92821C587A \
       8FCCA13FEF1D0C2E91008E09770F7A9A5AE15600 \
     ; do \
-    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
+    gpg --keyserver pool.sks-keyservers.net --recv-keys "$key"; \
     done
 
 ENV NODE_VERSION 8.11.4
