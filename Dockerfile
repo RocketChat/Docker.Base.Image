@@ -41,5 +41,5 @@ RUN set -x \
  && tar -xzf "node-v$NODE_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1 \
  && rm "node-v$NODE_VERSION-linux-x64.tar.gz" SHASUMS256.txt.asc \
  && npm cache clear --force \
- && groupadd -g 99999 -r rocketchat \
- && useradd -u 99999 -r -g rocketchat rocketchat
+ && groupadd -g 65533 -r rocketchat \
+ && useradd -u 65533 -r -g rocketchat rocketchat
