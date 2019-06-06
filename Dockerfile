@@ -42,4 +42,6 @@ RUN set -x \
  && rm "node-v$NODE_VERSION-linux-x64.tar.gz" SHASUMS256.txt.asc \
  && npm cache clear --force \
  && groupadd -g 65533 -r rocketchat \
- && useradd -u 65533 -r -g rocketchat rocketchat
+ && useradd -u 65533 -r -g rocketchat rocketchat \
+ && sed -i -e "s/^root:x:0:0:root:\/root:\/bin\/bash/root:x:0:0:root:\/root:\/bin\/false/" /etc/passwd \
+ && sed -i -e "s/^root:\*:/root:!:/" /etc/shadow
