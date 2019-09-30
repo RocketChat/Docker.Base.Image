@@ -28,7 +28,7 @@ RUN set -ex \
     gpg --keyserver pool.sks-keyservers.net --recv-keys "$key"; \
     done
 
-ENV NODE_VERSION 8.11.4
+ENV NODE_VERSION 8.15.1
 ENV NODE_ENV production
 
 RUN set -x \
