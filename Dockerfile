@@ -3,12 +3,16 @@ FROM debian:stretch
 MAINTAINER buildmaster@rocket.chat
 
 RUN apt-get update \
-	&& apt-get install -y \
-		gpg \
-    && rm -rf /var/lib/apt/lists/*
+ && apt-get install -y gnupg dirmngr \
+ && rm -rf /var/lib/apt/lists/* \
+ && mkdir ~/.gnupg \
+ && echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf
 
 # gpg: key 4FD08014: public key "Rocket.Chat Buildmaster <buildmaster@rocket.chat>" imported
 RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 0E163286C20D07B9787EBE9FD7F9D0414FD08104
+
+ENV NODE_VERSION 12.16.1
+ENV NODE_ENV production
 
 # gpg keys listed at https://github.com/nodejs/node
 RUN set -ex \
@@ -26,12 +30,7 @@ RUN set -ex \
       B9E2F5981AA6E0CD28160D9FF13993A75599653C \
     ; do \
     gpg --keyserver pool.sks-keyservers.net --recv-keys "$key"; \
-    done
-
-ENV NODE_VERSION 12.16.1
-ENV NODE_ENV production
-
-RUN set -x \
+    done \
  && apt-get update && apt-get install -y curl ca-certificates imagemagick --no-install-recommends \
  && rm -rf /var/lib/apt/lists/* \
  && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" \
